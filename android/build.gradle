@@ -19,6 +19,10 @@ buildscript {
 }
 allprojects {
     repositories {
+        maven {
+            // expo-camera bundles a custom com.google.android:cameraview
+            url "$rootDir/../node_modules/expo-camera/android/maven"
+        }
         jcenter() {
             content {
                 includeModule("com.yqritc", "android-scalablevideoview")
