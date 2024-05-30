@@ -3,6 +3,9 @@ import React from 'react'
 import {styles} from './styles';
 import CustomButton from '../CustomButton';
 import { IPost } from '../../models/IPost';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ProfileNavigationProp } from '../../navigation/NavigationProp';
 
 interface IProfileHeader {
     userProfile : {
@@ -13,7 +16,11 @@ interface IProfileHeader {
     };
 }
 
+// const navigation = createNativeStackNavigator()
+
+
 const ProfileHeader = ({userProfile} : IProfileHeader) => {
+    const navigation = useNavigation<ProfileNavigationProp>();
     return (
         <View>
 
@@ -28,8 +35,8 @@ const ProfileHeader = ({userProfile} : IProfileHeader) => {
             <Text style={styles.bold}>{userProfile.name}</Text>
             <Text style={styles.grey}>{userProfile.bio}</Text>
             <View style={styles.buttonContainer}>
-                <CustomButton text="Edit Profile" />
-                <CustomButton text="Another Button" />
+                <CustomButton text="Edit Profile" onPress={() => navigation.navigate("Edit Profile")}/>
+                <CustomButton text="Go back" onPress={() => navigation.goBack()} />
             </View>
         </View>
     )

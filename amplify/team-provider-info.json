@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-instaclone-staging-150c8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891377336799:role/amplify-instaclone-staging-150c8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891377336799:role/amplify-instaclone-staging-150c8-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-instaclone-staging-150c8-deployment",
+      "UnauthRoleName": "amplify-instaclone-staging-150c8-unauthRole",
+      "StackName": "amplify-instaclone-staging-150c8",
+      "StackId": "arn:aws:cloudformation:us-east-2:891377336799:stack/amplify-instaclone-staging-150c8/05e66160-0d4a-11ef-be88-025cdc21ddfb",
+      "AmplifyAppId": "d217s57if6svzt"
+    }
+  }
+}

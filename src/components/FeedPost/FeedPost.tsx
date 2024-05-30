@@ -12,6 +12,9 @@ import { IComment } from "../../models/IComment";
 import DoublePressable from "../DoublePressable";
 import Carousel from "../Caroussel";
 import VideoPlayer from "../VideoPlayer";
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack'
+import { FeedNavigationProp } from "../../navigation/NavigationProp";
 
 export interface IFeePostProps {
   post: IPost,
@@ -19,9 +22,13 @@ export interface IFeePostProps {
 
 }
 
+
+
 export const FeedPost = ({post, isActive}: IFeePostProps) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState<boolean>(false);
+
+  const navigation = useNavigation<FeedNavigationProp>();
 
   const toggleDescriptionExpanded = () => {
     console.log("isDescriptionExpanded", isDescriptionExpanded)
@@ -50,12 +57,20 @@ export const FeedPost = ({post, isActive}: IFeePostProps) => {
       return (<VideoPlayer sourceUri={post.video} isActive={isActive}/>)
   } 
 
+  const navigateToUser = () =>  {
+    navigation.navigate('UserProfile',{userId : post.user?.id})
+  }
+
+  const navigateToComments = () => {
+    navigation.navigate("Comments", {postId : post.id})
+  }
+
   return (
     <View>
       {/* Header */}
       <View style={styles.header}>
-        <Image source={{ uri: post.user.image }} style={styles.userAvatar} />
-        <Text style={styles.userNameText}>{post.user.username}</Text>
+        <Image source={{ uri: post?.user?.image  }} style={styles.userAvatar} />
+        <Text onPress={navigateToUser} style={styles.userNameText}>{post?.user?.username}</Text>
         <Entypo name='dots-three-horizontal' size={16} style={styles.threeDots} />
       </View>
       {/* content */}
@@ -88,12 +103,12 @@ export const FeedPost = ({post, isActive}: IFeePostProps) => {
         </Text>
         {/*Post Descriprion*/}
         <Text style={styles.text}>
-          <Text style={styles.bold}>{post.user.username}</Text>{' '}
+          <Text style={styles.bold}>{post?.user?.username}</Text>{' '}
           {post.description}
         </Text>
         {/* comments */}
         <Pressable onPress={toggleDescriptionExpanded}>
-          <Text >View all {post.comments.length} comments</Text>
+          <Text onPress={navigateToComments} >View all {post?.comments?.length} comments</Text>
           {isDescriptionExpanded && <FlatList
             data={post.comments}
             renderItem={({ item }) => <Comment comment={item} />}

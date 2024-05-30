@@ -3,13 +3,7 @@ import { posts } from '../../../DataExamples';
 import { ViewToken, FlatList } from 'react-native';
 import FeedPost from '../../components/FeedPost';
 
-export interface IHomeScreenProps {
-
-}
-
-
-export const HomeScreen = (props: IHomeScreenProps) => {
-  const { } = props
+export const HomeScreen = () => {
   const [currentPostId, setCurrentPostId] = useState<string | null>(null)
   const postViewabilityConfig = {
     itemVisiblePercentThreshold: 51
